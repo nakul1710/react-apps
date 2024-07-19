@@ -3,7 +3,7 @@ import React from 'react';
 function App() {
   const [height, setHeight] = React.useState<number>(0);
   const [weight, setWeight] = React.useState<number>(0);
-  const [bmi, setBmi] = React.useState<number>(0);
+  const [bmi, setBmi] = React.useState<number|string>(0);
 
   const highChange = (e: any) => {
     setHeight(parseInt(e.target.value));
@@ -16,7 +16,15 @@ function App() {
   const bi = () => {
     const heightInMeters = height / 100;
     const bmiValue = weight / (heightInMeters * heightInMeters);
-    setBmi(bmiValue);
+    let bmiCategory;
+    if (bmiValue <= 16) {
+      bmiCategory = "Severe Thinness";
+    } else if (bmiValue > 16 && bmiValue < 25) {
+      bmiCategory = "Normal";
+    } else {
+      bmiCategory = "Overweight";
+    }
+    setBmi(`${bmiValue.toFixed(2)} - ${bmiCategory}`);
   };
 
   return (
