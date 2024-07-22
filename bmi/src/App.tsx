@@ -24,7 +24,7 @@ function App() {
     } else {
       bmiCategory = "Overweight";
     }
-    setBmi(`${bmiValue.toFixed(2)} - ${bmiCategory}`);
+    setBmi(`${bmiValue} - ${bmiCategory}`);
   };
 
   return (
